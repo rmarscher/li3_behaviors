@@ -14,12 +14,41 @@ class Model extends \lithium\data\Model {
 
 	protected $_actsAs = array();
 
-	public static function __init() {
-		static::_isBase(__CLASS__, true);
-		parent::__init();
-		$class = get_called_class();
+	/**
+	 * Configures the model for use. This method will set the `Model::$_schema`, `Model::$_meta`,
+	 * `Model::$_finders` class attributes, as well as obtain a handle to the configured
+	 * persistent storage connection.
+	 *
+	 * @param array $config Possible options are:
+	 *        - `meta`: Meta-information for this model, such as the connection.
+	 *        - `finders`: Custom finders for this model.
+	 *        - `query`: Default query parameters.
+	 *        - `schema`: A `Schema` instance for this model.
+	 *        - `classes`: Classes used by this model.
+	 */
+	public static function config(array $config = array()) {
+		if (($class = get_called_class()) === __CLASS__) {
+			return;
+		}
+		return parent::config($config);
+	}
 
-		if (!static::_isBase($class) && $behaviors = static::_object()->_actsAs) {
+	/**
+	 * Init default connection options and connects default finders.
+	 *
+	 * This method will set the `Model::$_schema`, `Model::$_meta`, `Model::$_finders` class
+	 * attributes, as well as obtain a handle to the configured persistent storage connection
+	 *
+	 * Bahavior methods are applied to the model here.
+	 *
+	 * @param string $class The fully-namespaced class name to initialize.
+	 * @return object Returns the initialized model instance.
+	 */
+	protected static function _init($class) {
+		error_log($class);
+		parent::_init($class);
+
+		if ($behaviors = static::_object()->_actsAs) {
 			Behaviors::apply($class, $behaviors);
 		}
 	}
