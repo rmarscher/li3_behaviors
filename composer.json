@@ -1,0 +1,28 @@
+{
+    "name": "nateabele/li3_behaviors",
+    "type": "lithium-library",
+    "description": "Model behaviors for Lithium PHP framework",
+    "keywords": [
+        "php",
+        "behaviors",
+        "lithium",
+        "li3"
+    ],
+    "homepage": "https://github.com/nateabele/li3_filesystem",
+    "license": "BSD-3-Clause",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Nate Abele",
+            "homepage": "https://github.com/nateablele/li3_behaviors"
+        },
+        {
+            "name": "Rob Marscher",
+            "homepage": "https://github.com/rmarscher/li3_behaviors"
+        }
+    ],
+    "require": {
+        "php": ">=5.3",
+        "composer/installers": "dev-master"
+    }
+}
