@@ -14,12 +14,11 @@ class Model extends \lithium\data\Model {
 
 	protected $_actsAs = array();
 
-	public static function __init() {
-		static::_isBase(__CLASS__, true);
-		parent::__init();
+	public static function _init() {
+		parent::_init();
 		$class = get_called_class();
 
-		if (!static::_isBase($class) && $behaviors = static::_object()->_actsAs) {
+		if ($class !== __CLASS__ && $behaviors = static::_object()->_actsAs) {
 			Behaviors::apply($class, $behaviors);
 		}
 	}
